@@ -51,6 +51,6 @@ class CandidateTest < ActiveSupport::TestCase
 
     assert_equal [mick, keith], rick.voters
     assert_equal [jimi], jim.voters
-
   end
+  
 end

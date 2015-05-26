@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class VoteTest < ActiveSupport::TestCase
+
   test "votes count" do
     number_of_votes = Vote.count
 
@@ -35,4 +36,5 @@ class VoteTest < ActiveSupport::TestCase
     refute three.save
     refute four.save
   end
+  
 end
