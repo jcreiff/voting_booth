@@ -13,4 +13,14 @@ class VoteTest < ActiveSupport::TestCase
     assert_equal rick, one.candidate
     assert_equal keith, one.voter
   end
+
+  test "no phantom votes" do
+    one = Vote.new(candidate_id: 1, voter_id: 3)
+    two = Vote.new(voter_id: 4)
+    three = Vote.new(candidate_id: 5)
+
+    assert one.save
+    refute two.save
+    refute three.save
+  end
 end
