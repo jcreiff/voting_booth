@@ -23,4 +23,16 @@ class VoteTest < ActiveSupport::TestCase
     refute two.save
     refute three.save
   end
+
+  test "one vote per voter" do
+    one = Vote.new(candidate_id: 3, voter_id: 3)
+    two = Vote.new(candidate_id: 3, voter_id: 4)
+    three = Vote.new(candidate_id: 3, voter_id: 3)
+    four = Vote.new(candidate_id: 4, voter_id: 3)
+
+    assert one.save
+    assert two.save
+    refute three.save
+    refute four.save
+  end
 end
