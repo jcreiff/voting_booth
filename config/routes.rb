@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'votes/index'
+
   get 'candidates/index'
   get 'candidates/show'
   post 'candidates/create'
