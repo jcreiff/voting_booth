@@ -9,4 +9,12 @@ class VotersController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
+  def update
+
+  end
+
 end
