@@ -1,6 +1,7 @@
 class VotesController < ApplicationController
-  def index
 
+  def index
+    render json: Vote.display_total
   end
 
 
