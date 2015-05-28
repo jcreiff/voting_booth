@@ -1,5 +1,7 @@
 class VotersController < ApplicationController
 
+  before_filter :restrict_access, except: :create
+
   def create
     voter = Voter.new(name: params[:name], hometown: params[:hometown])
     if voter.save
@@ -19,6 +21,11 @@ class VotersController < ApplicationController
     voter.update(hometown: params[:hometown]) if params[:hometown]
     voter.update(party: params[:party]) if params[:party]
     render json: voter
+  end
+
+  private def restrict_access
+    api_key = ApiKey.find_by_access_token(params[:access_token])
+    head :unauthorized unless api_key
   end
 
 end
