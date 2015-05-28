@@ -27,4 +27,18 @@ class VotesControllerTest < ActionController::TestCase
   #   assert_response :success
   # end
 
+  test "can be destroyed" do
+    first_count = Vote.count
+    rick = Candidate.create(name: "Rick Boucher", hometown: "Abingdon, VA",
+      district: "VA-9", party: "Democrat")
+    tim = Voter.create(name: "Tim Thompson", hometown: "Abingdon, VA")
+    vote = Vote.create(voter_id: tim.id, candidate_id: rick.id)
+
+    assert_equal 1, Vote.count - first_count
+
+    delete :destroy, id: vote.id
+    
+    assert_equal first_count, Vote.count
+    assert response.body =~ /deleted/
+  end
 end
